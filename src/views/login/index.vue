@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -9,17 +9,29 @@
         <span class="svg-container">
           <SvgIcon icon="user"></SvgIcon>
         </span>
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input
+          placeholder="username"
+          name="username"
+          type="text"
+          v-model="loginForm.username"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <SvgIcon icon="password"></SvgIcon>
         </span>
-        <el-input placeholder="password" name="password" />
+        <el-input
+          placeholder="password"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.password"
+        />
         <span class="show-pwd">
-          <span class="svg-container">
-            <SvgIcon icon="eye"></SvgIcon>
+          <span class="svg-container" @click="onChangePwdType">
+            <SvgIcon
+              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            ></SvgIcon>
           </span>
         </span>
       </el-form-item>
@@ -31,7 +43,35 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword()
+    }
+  ]
+})
+const passwordType = ref('password')
+const onChangePwdType = () => {
+  if (passwordType.value === 'password') passwordType.value = 'text'
+  else passwordType.value = 'password'
+}
+</script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
@@ -100,7 +140,6 @@ $cursor: #fff;
   .show-pwd {
     position: absolute;
     right: 10px;
-    top: 7px;
     font-size: 16px;
     color: $dark_gray;
     cursor: pointer;
