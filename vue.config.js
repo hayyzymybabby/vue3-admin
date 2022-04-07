@@ -32,5 +32,30 @@ module.exports = defineConfig({
         changeOrigin: true // 是否跨域
       }
     }
+  },
+  //   `
+  //   @import "@/styles/variables.scss";
+  //   @import "@/styles/mixin.scss";
+  // `
+  css: {
+    loaderOptions: {
+      css: {
+        modules: {
+          mode: 'icss'
+        }
+      },
+      sass: {
+        // 全局引入变量和mixin
+        additionalData(content, loaderContext) {
+          const { resourcePath } = loaderContext
+          if (resourcePath.endsWith('variables.scss'))
+            return `@import "@/styles/mixin.scss"; ${content}`
+          return `
+            @import "@/styles/variables.scss";
+            @import "@/styles/mixin.scss"; ${content}
+          `
+        }
+      }
+    }
   }
 })
