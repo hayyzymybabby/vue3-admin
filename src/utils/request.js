@@ -1,6 +1,7 @@
 import store from '@/store'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { isCheckTimeout } from '@/utils/auth'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -14,6 +15,11 @@ service.interceptors.request.use(
     config.headers.icode = 'D06B14065916C4D4'
     // 统一注入token
     if (store.getters.token) {
+      // 超时退出操作
+      if (isCheckTimeout()) {
+        store.dispatch('user/logout')
+        return Promise.reject(new Error('token 失效'))
+      }
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
     // 必须返回 config
@@ -36,6 +42,15 @@ service.interceptors.response.use(
     }
   },
   error => {
+    // 处理 token 超时问题
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.code === 401
+    ) {
+      // token超时
+      store.dispatch('user/logout')
+    }
     ElMessage.error(error.message)
     return Promise.reject(error)
   }
