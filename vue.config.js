@@ -2,7 +2,6 @@ const path = require('path')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-console.log(process.env.VUE_APP_BASE_API)
 
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
