@@ -1,6 +1,12 @@
 <template>
-  <div class="app-wrapper">
-    <Sidebar class="sidebar-container" :style="{backgroundColor: variables.menuBg}"></Sidebar>
+  <div
+    class="app-wrapper"
+    :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+  >
+    <Sidebar
+      class="sidebar-container"
+      :style="{ backgroundColor: variables.menuBg }"
+    ></Sidebar>
     <div class="main-container">
       <div class="fixed-header">
         <Navbar></Navbar>
@@ -29,6 +35,11 @@ import variables from '@/styles/variables.scss'
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - $sideBarWidth);
+  width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>
