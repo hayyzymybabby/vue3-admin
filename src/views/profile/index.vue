@@ -1,5 +1,11 @@
 <template>
-  <div class="">个人中心</div>
+  <div class="">
+    <el-pagination
+      :page-size="20"
+      layout="total, prev, pager, next"
+      :total="1000"
+    />
+  </div>
 </template>
 
 <script setup>

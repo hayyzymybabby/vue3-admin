@@ -4,7 +4,7 @@
     <Breadcrumb class="breadcrumb-container"></Breadcrumb>
     <div class="right-menu">
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
-      <el-dropdown trigger="click">
+      <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
             shape="square"
