@@ -5,8 +5,10 @@
     @command="handleSetLanguage"
   >
     <div>
-      <el-tooltip content="国际化" :effect="effect">
-        <svg-icon icon="language" />
+      <el-tooltip :content="$t('msg.guide.langTitle')" :effect="effect">
+        <div>
+          <svg-icon icon="language" />
+        </div>
       </el-tooltip>
     </div>
     <template #dropdown>
@@ -47,6 +49,6 @@ const i18n = useI18n()
 const handleSetLanguage = lang => {
   i18n.locale.value = lang
   store.commit('app/setLanguage', lang)
-  ElMessage.success('更新成功')
+  ElMessage.success(i18n.t('msg.toast.switchLangSuccess'))
 }
 </script>

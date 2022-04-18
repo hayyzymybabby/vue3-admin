@@ -4,12 +4,12 @@
   <!-- 非 element icon -->
   <SvgIcon v-else :icon="icon"></SvgIcon>
   <!-- 文本 -->
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script setup>
 import { defineProps } from 'vue'
-import SvgIcon from '@/components/SvgIcon'
+import { generateTitle } from '@/utils/i18n'
 defineProps({
   title: {
     type: String,
