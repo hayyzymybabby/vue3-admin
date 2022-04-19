@@ -26,6 +26,7 @@
 <script setup>
 import { defineProps, defineEmits, ref } from 'vue'
 import { useStore } from 'vuex'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
 defineProps({
   modelValue: {
     type: Boolean,
@@ -69,7 +70,8 @@ const closed = () => {
  * 3. 关闭 dialog
  */
 const comfirm = async () => {
-  // 3. 关闭 dialog
+  const newStyle = await generateNewStyle(mColor.value)
+  writeNewStyle(newStyle)
   store.commit('theme/setMainColor', mColor.value)
   closed()
 }

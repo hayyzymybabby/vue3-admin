@@ -5,6 +5,7 @@
       layout="total, prev, pager, next"
       :total="1000"
     />
+    <el-button type="primary"> 1111</el-button>
   </div>
 </template>
 
