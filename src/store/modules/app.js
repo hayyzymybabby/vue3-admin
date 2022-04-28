@@ -18,7 +18,7 @@ export default {
     },
     /**
      * 添加 tags
-     * */
+     */
     addTagsViewList(state, tag) {
       const idFind = state.tagsViewList.find(item => {
         return item.path === tag.path
@@ -28,6 +28,13 @@ export default {
         state.tagsViewList.push(tag)
         setItem(TAGS_VIEW, state.tagsViewList)
       }
+    },
+    /**
+     * 添加 tags
+     */
+    changeTagsView(state, { index, tag }) {
+      state.tagsViewList[index] = tag
+      setItem(TAGS_VIEW, state.tagsViewList)
     }
   }
 }
