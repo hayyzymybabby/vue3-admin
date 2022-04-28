@@ -3,6 +3,7 @@
     <Hamburger class="hamburger-container"></Hamburger>
     <Breadcrumb class="breadcrumb-container"></Breadcrumb>
     <div class="right-menu">
+      <HeaderSearch class="right-menu-item hover-effect"></HeaderSearch>
       <Screenfull class="right-menu-item hover-effect"></Screenfull>
       <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
@@ -40,6 +41,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
 
 const store = useStore()
 const logout = () => {
