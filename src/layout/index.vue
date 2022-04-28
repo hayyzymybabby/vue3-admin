@@ -10,6 +10,7 @@
     <div class="main-container">
       <div class="fixed-header">
         <Navbar></Navbar>
+        <TagsView></TagsView>
       </div>
       <AppMain></AppMain>
     </div>
@@ -20,6 +21,7 @@
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import AppMain from './components/AppMain'
+import TagsView from '@/components/TagsView'
 </script>
 
 <style lang="scss" scoped>
