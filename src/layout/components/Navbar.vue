@@ -3,6 +3,7 @@
     <Hamburger class="hamburger-container"></Hamburger>
     <Breadcrumb class="breadcrumb-container"></Breadcrumb>
     <div class="right-menu">
+      <Guide class="right-menu-item hover-effect"></Guide>
       <HeaderSearch class="right-menu-item hover-effect"></HeaderSearch>
       <Screenfull class="right-menu-item hover-effect"></Screenfull>
       <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
@@ -42,6 +43,7 @@ import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
+import Guide from '@/components/Guide'
 
 const store = useStore()
 const logout = () => {

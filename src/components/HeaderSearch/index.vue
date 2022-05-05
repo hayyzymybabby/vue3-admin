@@ -1,8 +1,8 @@
 <template>
   <div :class="{ show: isShow }" class="header-search">
-    <span @click.stop="onShowClick">
-      <svg-icon id="guide-search" class-name="search-icon" icon="search" />
-    </span>
+    <div id="guide-search" @click.stop="onShowClick">
+      <svg-icon class-name="search-icon" icon="search" />
+    </div>
     <el-select
       ref="headerSearchSelectRef"
       class="header-search-select"
@@ -126,6 +126,9 @@ watchSwitchLang(() => {
 <style lang="scss" scoped>
 .header-search {
   font-size: 0 !important;
+  #guide-search {
+    display: inline-block;
+  }
   ::v-deep .search-icon {
     cursor: pointer;
     font-size: 18px;
