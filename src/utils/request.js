@@ -12,7 +12,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // 添加 icode
-    config.headers.icode = 'D06B14065916C4D4'
+    config.headers.icode = 'F95331F824484003'
     // 统一注入token
     if (store.getters.token) {
       // 超时退出操作
