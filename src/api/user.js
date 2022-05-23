@@ -6,3 +6,10 @@ export const getFeature = () => {
     url: '/user/feature'
   })
 }
+
+// 获取章节功能
+export const chapter = () => {
+  return request({
+    url: '/user/chapter'
+  })
+}
