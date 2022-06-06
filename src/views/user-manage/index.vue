@@ -52,7 +52,7 @@
             <el-button type="primary" size="mini" @click="onShowClick(row._id)">
               {{ $t('msg.excel.show') }}
             </el-button>
-            <el-button type="info" size="mini">{{
+            <el-button type="info" size="mini" @click="onShowRoleClick(row)">{{
               $t('msg.excel.showRole')
             }}</el-button>
             <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{
@@ -76,17 +76,24 @@
     </el-card>
     <!-- 导出 -->
     <Export2Excel v-model="exportToExcelVisible"></Export2Excel>
+    <!-- 分配角色 -->
+    <RolesDialog
+      v-model="roleDialogVisible"
+      :userId="selectUserId"
+      @updateRole="getListData"
+    ></RolesDialog>
   </div>
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import Export2Excel from './components/Export2Excel'
+import RolesDialog from './components/Roles'
 
 // 数据相关
 const tableData = ref([])
@@ -169,6 +176,20 @@ const exportToExcelVisible = ref(false)
 const onToExcelClick = () => {
   exportToExcelVisible.value = true
 }
+
+/**
+ * 查看角色的点击事件
+ */
+const roleDialogVisible = ref(false)
+const selectUserId = ref('')
+const onShowRoleClick = row => {
+  selectUserId.value = row._id
+  roleDialogVisible.value = true
+}
+// 保证每次打开重新获取用户角色数据
+watch(roleDialogVisible, val => {
+  if (!val) selectUserId.value = ''
+})
 </script>
 
 <style lang="scss" scoped>
