@@ -15,6 +15,7 @@ import installFilter from '@/filters'
 // directives
 import installDirective from '@/directives'
 
+i18n.global.locale.value = store.getters.language
 const app = createApp(App)
 installElementPlus(app)
 installIcons(app)
