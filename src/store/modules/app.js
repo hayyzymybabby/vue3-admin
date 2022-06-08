@@ -57,6 +57,13 @@ export default {
         )
       }
       setItem(TAGS_VIEW, state.tagsViewList)
+    },
+    /**
+     * 退出登录时使用
+     * 刷新tag
+     */
+    refreshTagsView(state) {
+      state.tagsViewList = getItem(TAGS_VIEW) || []
     }
   }
 }

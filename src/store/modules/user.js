@@ -1,5 +1,5 @@
 import md5 from 'md5'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 import { TOKEN } from '@/constant'
 import { login, getUserInfo } from '@/api/sys'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
@@ -55,9 +55,11 @@ export default {
      * 退出登录
      */
     logout() {
+      resetRouter()
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
       removeAllItem()
+      this.commit('app/refreshTagsView')
       router.push('/login')
     }
   }
