@@ -51,10 +51,11 @@
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, onMounted } from 'vue'
 import { getArticleList } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic'
+import { tableRef, initSortable } from './sortable'
 
 // 数据相关
 const tableData = ref([])
@@ -92,6 +93,11 @@ const handleCurrentChange = currentPage => {
   page.value = currentPage
   getListData()
 }
+
+// 表格拖拽相关
+onMounted(() => {
+  initSortable(tableData, getListData)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -116,6 +122,12 @@ const handleCurrentChange = currentPage => {
   .pagination {
     margin-top: 20px;
     text-align: center;
+  }
+
+  ::v-deep .sortable-ghost {
+    opacity: 0.6;
+    color: #fff !important;
+    background: #304156 !important;
   }
 }
 </style>
